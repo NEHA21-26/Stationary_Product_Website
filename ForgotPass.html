@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: 100px auto;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .forgot-password {
+            display: block;
+            margin-top: 10px;
+            color: #007BFF;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            text-align: center;
+        }
+        .close-btn {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            float: right;
+            font-size: 18px;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .success-message {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Login</h2>
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <button class="login-btn">Login</button>
+        <a class="forgot-password" onclick="openForgotPasswordModal()">Forgot Password?</a>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeForgotPasswordModal()">×</button>
+            <h2>Forgot Password</h2>
+            <p>Enter your email to reset your password</p>
+            <div class="input-group">
+                <label for="resetEmail">Email</label>
+                <input type="email" id="resetEmail" placeholder="Enter your email">
+            </div>
+            <button class="submit-btn" onclick="sendResetLink()">Send Reset Link</button>
+            <p id="successMessage" class="success-message" style="display: none;">✔ Reset link sent successfully!</p>
+        </div>
+    </div>
+
+    <script>
+        function openForgotPasswordModal() {
+            document.getElementById("forgotPasswordModal").style.display = "block";
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById("forgotPasswordModal").style.display = "none";
+        }
+
+        function sendResetLink() {
+            let email = document.getElementById("resetEmail").value;
+            if (email) {
+                document.getElementById("successMessage").style.display = "block";
+                setTimeout(closeForgotPasswordModal, 2000);
+            } else {
+                alert("Please enter your email.");
+            }
+        }
+    </script>
+
+</body>
+</html>
